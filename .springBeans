@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.7.1.201510041102-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+		<config>src/com/bildit/spring/xmlconfig/dao-context.xml</config>
+		<config>src/com/bildit/spring/xmlconfig/service-context.xml</config>
+		<config>src/com/bildit/spring/xmlconfig/security-context.xml</config>
+	</configs>
+	<autoconfigs>
+		<config>WebContent/WEB-INF/movies-servlet.xml</config>
+	</autoconfigs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>

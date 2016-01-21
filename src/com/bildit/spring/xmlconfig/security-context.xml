@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:jdbc-user-service data-source-ref="dataSource" id="jdbcUserService" />
+			<security:password-encoder ref="passwordEncoder" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
+	<security:http use-expressions="true">
+	
+		<security:intercept-url pattern="/" access="permitAll" />
+		<security:intercept-url pattern="/logout" access="permitAll" />
+		<security:intercept-url pattern="/loggedout" access="permitAll" />
+		<security:intercept-url pattern="/signup" access="permitAll" />
+		<security:intercept-url pattern="/signupuser" access="permitAll" />
+		<security:intercept-url pattern="/data/**" access="permitAll" />
+		<security:intercept-url pattern="/messages" access="permitAll" />
+		<security:intercept-url pattern="/userexception" access="permitAll" />
+		<security:intercept-url pattern="/moviexception" access="permitAll" />
+		<security:intercept-url pattern="/login" access="permitAll" />
+		<security:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/userpage" access="hasRole('ROLE_USER')" />
+		<!-- <security:intercept-url pattern="/admin" access="permitAll" /> -->
+		<!-- <security:intercept-url pattern="/userpage" access="permitAll" /> -->
+		<security:intercept-url pattern="/addadmin" access="isAuthenticated()" />
+		<security:intercept-url pattern="/addingadmin" access="isAuthenticated()" />
+		<security:intercept-url pattern="/addmovie" access="isAuthenticated()" />
+		<security:intercept-url pattern="/addingmovie" access="isAuthenticated()" />
+		<security:intercept-url pattern="/deletemovie" access="isAuthenticated()" />
+		<security:intercept-url pattern="/deletingmovie" access="isAuthenticated()" />
+		<security:intercept-url pattern="/getmovie" access="isAuthenticated()" />
+		<security:intercept-url pattern="/gettingmovie" access="isAuthenticated()" />
+		<security:intercept-url pattern="/updatemovie1" access="isAuthenticated()" />
+		<security:intercept-url pattern="/updatemovie" access="isAuthenticated()" />
+		<security:intercept-url pattern="/updatingmovie1" access="isAuthenticated()" />
+		<security:intercept-url pattern="/updatingmovie" access="isAuthenticated()" />
+		<security:intercept-url pattern="/getmovies" access="isAuthenticated()" />
+		<security:intercept-url pattern="/getusers" access="isAuthenticated()" />
+		<security:intercept-url pattern="/getuser" access="isAuthenticated()" />
+		<security:intercept-url pattern="/gettinguser" access="isAuthenticated()" />
+		<security:intercept-url pattern="/listuser" access="isAuthenticated()" />
+		<security:intercept-url pattern="/listmovie" access="isAuthenticated()" />
+		<security:intercept-url pattern="/deleteuser" access="isAuthenticated()" />
+		<security:intercept-url pattern="/deletinguser" access="isAuthenticated()" />
+		<security:intercept-url pattern="/updateuser1" access="isAuthenticated()" />
+		<security:intercept-url pattern="/updatinguser1" access="isAuthenticated()" />
+		<security:intercept-url pattern="/updateuser" access="isAuthenticated()" />
+		<security:intercept-url pattern="/updatinguser" access="isAuthenticated()" />
+		<security:intercept-url pattern="/**" access="denyAll" />
+		
+		<security:form-login login-page="/login" authentication-failure-url="/login?error" />
+		<security:logout logout-success-url="/loggedout" />
+		<security:remember-me key="userAppKey" user-service-ref="jdbcUserService" />
+		
+	</security:http>
+
+	<security:global-method-security secured-annotations="enabled" />
+	
+	<bean id="passwordEncoder" 
+		class="org.springframework.security.crypto.password.StandardPasswordEncoder">
+	</bean>
+	
+</beans>
